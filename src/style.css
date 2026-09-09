@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #ffffff;
+    --orange1: #fffcc9;
+    --orange2: #ffcd80;
+    --orange3: #f4b738;
+    --orange4: #ff8a00;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1 0 100px;
+    max-width: 250px;
+}
+
+.main {
+    display: flex;
+    flex: 1 0 200px;
+    justify-content: center;
+}
