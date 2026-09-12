@@ -29,10 +29,39 @@ body {
 
 .sidebar {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     flex: 1 0 100px;
     max-width: 250px;
+    background-color: var(--orange4);
+    color: var(--white);
+    padding: 5px 10px 5px 10px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.hover {
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.hover:hover {
+    background-color: var(--white);
+    color: var(--orange4);
+    transition: 400ms;
+}
+
+.bottom {
+    margin-top: auto;
+}
+
+.hover.bottom {
+    display:flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.new-project-symbol {
+    width: 25px;
+    color: var(--orange4);
 }
 
 .main {
