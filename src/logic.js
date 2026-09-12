@@ -82,13 +82,54 @@ export function createToDo(title, description, dueDate, priority, notes) {
 }
 
 
-// ToDoDisplay
-export const displayHandler = {
-    state: [],
-    add: function (obj) {
-        this.state.push(obj)
-    },
-    update() {
-        this.state = this.state.filter(obj => obj.keepFlag == true)
+// // ToDoDisplay
+// export const displayHandler = {
+//     state: [],
+//     add: function (obj) {
+//         this.state.push(obj)
+//     },
+//     update() {
+//         this.state = this.state.filter(obj => obj.keepFlag == true)
+//     }
+// }
+
+// Project Composition
+const canAddToProject = (state) => ({
+    addToProject(obj) {
+        state.contents.push(obj)
     }
+})
+
+const canUpdate = (state) => ({
+    update() {
+        state.contents = state.contents.filter(obj => obj.keepFlag == true)
+    }
+})
+
+const canViewName = (state) => ({
+    viewName() {
+        console.log(state.name)
+    }
+})
+
+const canViewContents = (state) => ({
+    viewContents() {
+        console.log(state.contents)
+    }
+})
+
+// Project Handler
+export function createProject(name) {
+    const state = {
+        name,
+        contents: [],
+    }
+    const ProjectObject = Object.assign(
+        {},
+        canAddToProject(state),
+        canUpdate(state),
+        canViewName(state),
+        canViewContents(state)
+    )
+    return ProjectObject
 }
