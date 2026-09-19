@@ -64,6 +64,16 @@ body {
     color: var(--orange4);
 }
 
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+  border-radius: 10px;
+  outline: solid 2px white;
+}
+
+.project-list-child {
+    padding-left: 20px
+}
+
 .main {
     display: flex;
     flex: 1 0 200px;

@@ -1,7 +1,7 @@
 // planning
 /*
 For todos cards:
-ToDo(list) = [ToDoObject1, ToDoObject2]
+Project(list) = [ToDoObject1, ToDoObject2]
 ToDoObjectState = {
     title:,
     description:,
@@ -80,18 +80,6 @@ export function createToDo(title, description, dueDate, priority, notes) {
     )
     return ToDoObject
 }
-
-
-// // ToDoDisplay
-// export const displayHandler = {
-//     state: [],
-//     add: function (obj) {
-//         this.state.push(obj)
-//     },
-//     update() {
-//         this.state = this.state.filter(obj => obj.keepFlag == true)
-//     }
-// }
 
 // Project Composition
 const canAddToProject = (state) => ({
