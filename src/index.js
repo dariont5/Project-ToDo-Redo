@@ -4,11 +4,13 @@ window.createToDo = createToDo
 window.createProject = createProject
 
 const projectList = document.getElementById('project-list');
+const mainContainer = document.getElementById('main-container')
 
 const projectButton = document.getElementById('project-button')
 projectButton.addEventListener("click", () => {
     const newProject = document.createElement('li');
-    newProject.classList.add('project-list-child')
+    newProject.classList.add('project-list-child');
+    newProject.classList.add('hover')
     newProject.setAttribute('contenteditable', 'true')
     projectList.appendChild(newProject)
     newProject.focus()
@@ -18,7 +20,42 @@ projectButton.addEventListener("click", () => {
     newProject.addEventListener('blur', () => {
         newProject.setAttribute('contenteditable', 'false')
         newProjectObject.name = newProject.textContent
-        console.log(newProjectObject.name)
+        generateProjectPage(newProjectObject)
     })
     const newProjectObject = createProject("placeholder")
+    newProject.addEventListener("click", () => {
+        generateProjectPage(newProjectObject);
+    })
 })
+
+const clearMain = function () {
+    mainContainer.innerHTML = ""
+}
+
+const generateProjectHeader = function (Project) {
+    const headerName = Project.name;
+    const header = document.createElement('h1')
+    header.textContent = headerName;
+    mainContainer.appendChild(header)
+}
+
+const generateProjectPage = function (Project) {
+    clearMain();
+    generateProjectHeader(Project);
+    createMainBottom()
+}
+
+const createMainBottom = function () {
+    const addBottomMain = document.createElement('section');
+    addBottomMain.classList.add('main-bottom')
+    addBottomMain.classList.add('glass')
+    addBottomMain.classList.add('flex')
+
+    const addTaskButton = document.createElement('h3')
+    addTaskButton.classList.add('hover')
+    addTaskButton.classList.add('invert')
+    addTaskButton.textContent = 'Add A New Task'
+    addBottomMain.appendChild(addTaskButton)
+
+    mainContainer.appendChild(addBottomMain);
+}
