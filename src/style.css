@@ -36,6 +36,7 @@ body {
     color: var(--white);
     padding: 5px 10px 5px 10px;
     border-radius: 0px 10px 10px 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .hover {
@@ -92,7 +93,7 @@ body {
 .glass {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -108,4 +109,14 @@ body {
     bottom: 5px;
     padding: 0 10px 0 10px;
     justify-content: center;
+}
+
+input.name {
+    border-radius: 5rem;
+    padding-left: 10px;
+    border-color: var(--orange2);
+}
+
+input.name:focus {
+    outline: solid 2px var(--orange4);
 }

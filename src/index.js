@@ -1,5 +1,6 @@
 import './style.css'
 import {createToDo, createProject } from "./logic.js";
+import {compareAsc, format} from "date-fns";
 window.createToDo = createToDo
 window.createProject = createProject
 
@@ -51,11 +52,25 @@ const createMainBottom = function () {
     addBottomMain.classList.add('glass')
     addBottomMain.classList.add('flex')
 
-    const addTaskButton = document.createElement('h3')
-    addTaskButton.classList.add('hover')
-    addTaskButton.classList.add('invert')
-    addTaskButton.textContent = 'Add A New Task'
-    addBottomMain.appendChild(addTaskButton)
+    const taskButton = document.createElement('h3')
+    taskButton.classList.add('hover')
+    taskButton.classList.add('invert')
+    taskButton.textContent = 'Add A New Task'
+    taskButton.addEventListener('click', createNewTask)
+    addBottomMain.appendChild(taskButton)
 
     mainContainer.appendChild(addBottomMain);
+}
+
+const createNewTask = function () {
+    const task = document.createElement('div');
+    const blockOne = document.createElement('p');
+    const name = document.createElement('input');
+    name.setAttribute('class', 'name')
+    name.setAttribute('type', 'text');
+    name.setAttribute('placeholder', 'Task Name...')
+
+    blockOne.appendChild(name);
+    task.appendChild(blockOne);
+    mainContainer.appendChild(task);
 }
