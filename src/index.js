@@ -69,8 +69,28 @@ const createNewTask = function () {
     name.setAttribute('class', 'name')
     name.setAttribute('type', 'text');
     name.setAttribute('placeholder', 'Task Name...')
-
     blockOne.appendChild(name);
     task.appendChild(blockOne);
+
+    const blockTwo = document.createElement('p');
+    const description = document.createElement('input')
+    description.classList.add('description')
+    description.setAttribute('placeholder', 'description: ');
+    description.setAttribute('type', 'text')
+    blockTwo.appendChild(description);
+    task.appendChild(blockTwo)
+
+    const blockThree = document.createElement('p');
+    const dueDate = document.createElement('input');
+    const optionOne = document.createElement('input').setAttribute('type', 'radio').setAttribute('id','low').setAttribute('name','priority_designation').setAttribute('value', 'low');
+    const optionTwo = document.createElement('input').setAttribute('type', 'radio').setAttribute('id','med').setAttribute('name','priority_designation').setAttribute('value', 'med');
+    const optionThree = document.createElement('input').setAttribute('type', 'radio').setAttribute('id','high').setAttribute('name','priority_designation').setAttribute('value', 'high');
+    dueDate.setAttribute('type','date');
+    blockThree.appendChild(dueDate)
+    blockThree.appendChild(optionOne)
+    blockThree.appendChild(optionTwo)
+    blockThree.appendChild(optionThree)
+    task.appendChild(blockThree)
+    
     mainContainer.appendChild(task);
 }

@@ -111,12 +111,18 @@ body {
     justify-content: center;
 }
 
-input.name {
+input.name,
+input.description {
     border-radius: 5rem;
     padding-left: 10px;
     border-color: var(--orange2);
 }
 
-input.name:focus {
+input.name:focus,
+input.description:focus {
     outline: solid 2px var(--orange4);
+}
+
+div > p + p {
+    margin-top: 10px;
 }
