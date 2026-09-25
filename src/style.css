@@ -37,6 +37,7 @@ body {
     padding: 5px 10px 5px 10px;
     border-radius: 0px 10px 10px 0px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    position: sticky;
 }
 
 .hover {
@@ -58,7 +59,8 @@ body {
 }
 
 .bottom {
-    margin-top: auto;
+    position: fixed;
+    bottom: 5px;
 }
 
 .hover.bottom {
@@ -125,4 +127,23 @@ input.description:focus {
 
 div > p + p {
     margin-top: 10px;
+}
+
+.task {
+    border-radius: 10px;
+    border: solid var(--orange4) 2px;
+    padding: 10px;
+    width: clamp(250px, 50%, 1000px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task + .task {
+    margin-top: 20px;
+}
+
+.notes {
+    min-width: 200px;
+    min-height: 100px;
 }

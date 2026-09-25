@@ -64,33 +64,92 @@ const createMainBottom = function () {
 
 const createNewTask = function () {
     const task = document.createElement('div');
+    task.classList.add('task');
     const blockOne = document.createElement('p');
     const name = document.createElement('input');
-    name.setAttribute('class', 'name')
+    name.setAttribute('class', 'name');
     name.setAttribute('type', 'text');
-    name.setAttribute('placeholder', 'Task Name...')
+    name.setAttribute('placeholder', 'Task Name: ');
     blockOne.appendChild(name);
     task.appendChild(blockOne);
 
     const blockTwo = document.createElement('p');
-    const description = document.createElement('input')
-    description.classList.add('description')
-    description.setAttribute('placeholder', 'description: ');
-    description.setAttribute('type', 'text')
+    const description = document.createElement('input');
+    description.classList.add('description');
+    description.setAttribute('placeholder', 'Description: ');
+    description.setAttribute('type', 'text');
     blockTwo.appendChild(description);
-    task.appendChild(blockTwo)
+    task.appendChild(blockTwo);
 
     const blockThree = document.createElement('p');
     const dueDate = document.createElement('input');
-    const optionOne = document.createElement('input').setAttribute('type', 'radio').setAttribute('id','low').setAttribute('name','priority_designation').setAttribute('value', 'low');
-    const optionTwo = document.createElement('input').setAttribute('type', 'radio').setAttribute('id','med').setAttribute('name','priority_designation').setAttribute('value', 'med');
-    const optionThree = document.createElement('input').setAttribute('type', 'radio').setAttribute('id','high').setAttribute('name','priority_designation').setAttribute('value', 'high');
     dueDate.setAttribute('type','date');
-    blockThree.appendChild(dueDate)
-    blockThree.appendChild(optionOne)
-    blockThree.appendChild(optionTwo)
-    blockThree.appendChild(optionThree)
-    task.appendChild(blockThree)
+    dueDate.setAttribute('id', dueDate)
+    const dueDateLabel = document.createElement('label')
+    dueDateLabel.textContent = 'Due Date: '
+    dueDateLabel.setAttribute('for', 'dueDate')
+    const dueDateBlock = document.createElement('div');
+    dueDateBlock.appendChild(dueDateLabel);
+    dueDateBlock.appendChild(dueDate);
+    blockThree.appendChild(dueDateBlock);
+
+    const fieldset = document.createElement('fieldset');
+    const legend = document.createElement('legend');
+    legend.textContent = 'Priority:'
+    fieldset.appendChild(legend);
+
+    const radioBlockOne = document.createElement('div');
+    const radioBlockTwo = document.createElement('div');
+    const radioBlockThree = document.createElement('div');
+    const blockThreeRadioBlocks = [radioBlockOne,radioBlockTwo, radioBlockThree];
+
+    const radio_id_value = ['low','med','high'];
+    const optionOne = document.createElement('input');
+    const optionTwo = document.createElement('input');
+    const optionThree = document.createElement('input')
+    const optionList = [optionOne, optionTwo, optionThree];
+
+    for (let i = 0; i < 3; i++) {
+        optionList[i].setAttribute('type', 'radio');
+        optionList[i].setAttribute('id', radio_id_value[i]);
+        optionList[i].setAttribute('name', 'priority_designation');
+        optionList[i].setAttribute('value' , radio_id_value[i]);
+    }
+
+    const option_labels = ['Low', 'Med', 'High'];
+    const optionOneLabel = document.createElement('label');
+    const optionTwoLabel = document.createElement('label');
+    const optionThreeLabel = document.createElement('label');
+    const optionLabelsList = [optionOneLabel, optionTwoLabel, optionThreeLabel];
+
+    for (let i = 0; i < 3; i++) {
+        optionLabelsList[i].setAttribute('for', radio_id_value[i]);
+        optionLabelsList[i].textContent = option_labels[i];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        blockThreeRadioBlocks[i].appendChild(optionList[i]);
+        blockThreeRadioBlocks[i].appendChild(optionLabelsList[i]);
+        fieldset.appendChild(blockThreeRadioBlocks[i]);
+    }
+
+    blockThree.appendChild(fieldset);
+    task.appendChild(blockThree);
+
+    const blockFour = document.createElement('p')
+    const notes = document.createElement('textarea');
+    notes.setAttribute('placeholder', 'Notes: ')
+    notes.classList.add('notes')
+    blockFour.appendChild(notes)
+    task.appendChild(blockFour)
+
+    const blockFive = document.createElement('p');
+    const deleteButton = document.createElement('h4');
+    deleteButton.classList.add('hover');
+    deleteButton.classList.add('invert');
+    deleteButton.textContent = 'Delete'
+    blockFive.appendChild(deleteButton);
+    task.appendChild(blockFive);
     
     mainContainer.appendChild(task);
 }
