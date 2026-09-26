@@ -1,0 +1,1 @@
+Forgive me for not using local storage, I wanted to use closures for the project. But when I got to the part with local storage, I realized that closures don't really work with JSON and I don't want to find a crazy work around any more.
