@@ -59,6 +59,12 @@ const canViewState = (state) => ({
     }
 })
 
+const canCheckKeepFlag = (state) => {
+    return {checkKeepFlag() {
+        return state.keepFlag
+    }}
+}
+
 export function createToDo(title, description, dueDate, priority, notes) {
     const state = {
         title,
@@ -77,6 +83,7 @@ export function createToDo(title, description, dueDate, priority, notes) {
         canUpdateNotes(state),
         canDelete(state),
         canViewState(state),
+        canCheckKeepFlag(state),
     )
     return ToDoObject
 }
@@ -90,7 +97,7 @@ const canAddToProject = (state) => ({
 
 const canUpdate = (state) => ({
     update() {
-        state.contents = state.contents.filter(obj => obj.keepFlag == true)
+        state.contents = state.contents.filter(obj => obj.checkKeepFlag() == true)
     }
 })
 

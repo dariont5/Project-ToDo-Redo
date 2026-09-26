@@ -43,10 +43,10 @@ const generateProjectHeader = function (Project) {
 const generateProjectPage = function (Project) {
     clearMain();
     generateProjectHeader(Project);
-    createMainBottom()
+    createMainBottom(Project)
 }
 
-const createMainBottom = function () {
+const createMainBottom = function (Project) {
     const addBottomMain = document.createElement('section');
     addBottomMain.classList.add('main-bottom')
     addBottomMain.classList.add('glass')
@@ -56,13 +56,14 @@ const createMainBottom = function () {
     taskButton.classList.add('hover')
     taskButton.classList.add('invert')
     taskButton.textContent = 'Add A New Task'
-    taskButton.addEventListener('click', createNewTask)
+    taskButton.addEventListener('click', () => {createNewTask(Project)})
     addBottomMain.appendChild(taskButton)
 
     mainContainer.appendChild(addBottomMain);
 }
 
-const createNewTask = function () {
+const createNewTask = function (Project) {
+    // DOM Setup
     const task = document.createElement('div');
     task.classList.add('task');
     const blockOne = document.createElement('p');
@@ -147,9 +148,48 @@ const createNewTask = function () {
     const deleteButton = document.createElement('h4');
     deleteButton.classList.add('hover');
     deleteButton.classList.add('invert');
-    deleteButton.textContent = 'Delete'
+    deleteButton.textContent = 'Delete Task'
     blockFive.appendChild(deleteButton);
     task.appendChild(blockFive);
     
     mainContainer.appendChild(task);
+
+    // Logic Portion
+    const ToDo = createToDo('','','','','');
+    Project.addToProject(ToDo);
+    Project.viewContents();
+    
+    name.addEventListener('blur', () => {
+        ToDo.updateTitle(name.value)
+        console.log(name.value)
+    })
+
+    description.addEventListener('blur', () => {
+        ToDo.updateDescription(description.value)
+        console.log(description.value)
+    })
+
+    dueDate.addEventListener('input', () => {
+        ToDo.updateDueDate(dueDate.value)
+        console.log(dueDate.value)
+    })
+
+    optionList.forEach((option) => {
+        option.addEventListener('input', () => {
+            ToDo.updatePriority(option.value)
+            console.log(option.value)
+        })
+    })
+
+    notes.addEventListener('blur' , () => {
+        ToDo.updateNotes(notes.value)
+        console.log(notes.value)
+    })
+
+    deleteButton.addEventListener('click', () => {
+        ToDo.delete();
+        Project.update();
+        Project.viewContents();
+        mainContainer.removeChild(task)
+    })
 }
